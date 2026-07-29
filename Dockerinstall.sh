@@ -474,7 +474,7 @@ EOF
   info "Refreshing APT metadata with Docker signature verification enabled..."
   "${SUDO[@]}" apt-get update
 
-  candidate=$(apt-cache policy docker-ce | awk '/Candidate:/ {print $2; exit}')
+  candidate=$(apt-cache policy docker-ce | awk '/Candidate:/ {print $2}')
   if [[ -z "$candidate" || "$candidate" == "(none)" ]]; then
     fatal "docker-ce has no installable candidate for $OS_NAME on architecture $apt_arch."
   fi
